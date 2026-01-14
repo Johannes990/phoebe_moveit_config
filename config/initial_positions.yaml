@@ -1,0 +1,19 @@
+# Default initial positions for phoebe's ros2_control fake system
+
+initial_positions:
+  left_arm_elbow_pitch_joint: 0
+  left_arm_elbow_yaw_joint: 0
+  left_arm_gripper_joint: -0.008
+  left_arm_shoulder_pitch_joint: 0
+  left_arm_shoulder_roll_joint: 0
+  left_arm_shoulder_yaw_joint: 0
+  left_arm_wrist_pitch_joint: 0
+  left_arm_wrist_roll_joint: 0
+  right_arm_elbow_pitch_joint: 0
+  right_arm_elbow_yaw_joint: 0
+  right_arm_gripper_joint: 0
+  right_arm_shoulder_pitch_joint: 0
+  right_arm_shoulder_roll_joint: 0
+  right_arm_shoulder_yaw_joint: 0
+  right_arm_wrist_pitch_joint: 0
+  right_arm_wrist_roll_joint: 0

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--This does not replace URDF, and is not an extension of URDF.
     This is a format for representing semantic information about the robot structure.
     A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
@@ -9,186 +9,657 @@
     <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
     <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
     <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-    <group name="differential_drive">
-        <joint name="wheel_left_joint" />
-        <joint name="wheel_right_joint" />
+    <group name="phoebe_left_arm">
+        <joint name="left_arm_joint"/>
+        <joint name="left_arm_shoulder_roll_joint"/>
+        <joint name="left_arm_shoulder_pitch_joint"/>
+        <joint name="left_arm_shoulder_yaw_joint"/>
+        <joint name="left_arm_elbow_pitch_joint"/>
+        <joint name="left_arm_elbow_yaw_joint"/>
+        <joint name="left_arm_wrist_pitch_joint"/>
+        <joint name="left_arm_wrist_roll_joint"/>
     </group>
-    <group name="left_arm">
-        <!--joint name="left_arm_joint" /-->
-        <joint name="left_arm_shoulder_roll_joint" />
-        <joint name="left_arm_shoulder_pitch_joint" />
-        <joint name="left_arm_shoulder_yaw_joint" />
-        <joint name="left_arm_elbow_pitch_joint" />
-        <joint name="left_arm_elbow_yaw_joint" />
-        <joint name="left_arm_wrist_pitch_joint" />
-        <joint name="left_arm_wrist_roll_joint" />
-        <joint name="left_arm_virtual_endeffector_joint" />
+    <group name="phoebe_right_arm">
+        <joint name="right_arm_joint"/>
+        <joint name="right_arm_shoulder_roll_joint"/>
+        <joint name="right_arm_shoulder_pitch_joint"/>
+        <joint name="right_arm_shoulder_yaw_joint"/>
+        <joint name="right_arm_elbow_pitch_joint"/>
+        <joint name="right_arm_elbow_yaw_joint"/>
+        <joint name="right_arm_wrist_pitch_joint"/>
+        <joint name="right_arm_wrist_roll_joint"/>
     </group>
-    <group name="right_arm">
-        <!--joint name="right_arm_joint" /-->
-        <joint name="right_arm_shoulder_roll_joint" />
-        <joint name="right_arm_shoulder_pitch_joint" />
-        <joint name="right_arm_shoulder_yaw_joint" />
-        <joint name="right_arm_elbow_pitch_joint" />
-        <joint name="right_arm_elbow_yaw_joint" />
-        <joint name="right_arm_wrist_pitch_joint" />
-        <joint name="right_arm_wrist_roll_joint" />
-        <joint name="right_arm_virtual_endeffector_joint" />
+    <group name="phoebe_left_hand">
+        <link name="left_arm_gripper_finger1"/>
+        <link name="left_arm_gripper_finger2"/>
+    </group>
+    <group name="phoebe_right_hand">
+        <link name="right_arm_gripper_finger1"/>
+        <link name="right_arm_gripper_finger2"/>
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-    <group_state name="left_side" group="left_arm">
-        <joint name="left_arm_elbow_pitch_joint" value="0" />
-        <joint name="left_arm_elbow_yaw_joint" value="0" />
-        <joint name="left_arm_shoulder_pitch_joint" value="1.5708" />
-        <joint name="left_arm_shoulder_roll_joint" value="1.5708" />
-        <joint name="left_arm_shoulder_yaw_joint" value="0" />
-        <joint name="left_arm_wrist_pitch_joint" value="0" />
-        <joint name="left_arm_wrist_roll_joint" value="0" />
+    <group_state name="left_arm_down" group="phoebe_left_arm">
+        <joint name="left_arm_elbow_pitch_joint" value="0.4759"/>
+        <joint name="left_arm_elbow_yaw_joint" value="0"/>
+        <joint name="left_arm_shoulder_pitch_joint" value="1.1239"/>
+        <joint name="left_arm_shoulder_roll_joint" value="1.403"/>
+        <joint name="left_arm_shoulder_yaw_joint" value="-0.1924"/>
+        <joint name="left_arm_wrist_pitch_joint" value="0"/>
+        <joint name="left_arm_wrist_roll_joint" value="0"/>
     </group_state>
-    <group_state name="right_side" group="right_arm">
-        <joint name="right_arm_elbow_pitch_joint" value="0" />
-        <joint name="right_arm_elbow_yaw_joint" value="0" />
-        <joint name="right_arm_shoulder_pitch_joint" value="1.5708" />
-        <joint name="right_arm_shoulder_roll_joint" value="-1.5708" />
-        <joint name="right_arm_shoulder_yaw_joint" value="0" />
-        <joint name="right_arm_wrist_pitch_joint" value="0" />
-        <joint name="right_arm_wrist_roll_joint" value="0" />
+    <group_state name="right_arm_down" group="phoebe_right_arm">
+        <joint name="right_arm_elbow_pitch_joint" value="0.4151"/>
+        <joint name="right_arm_elbow_yaw_joint" value="0"/>
+        <joint name="right_arm_shoulder_pitch_joint" value="1.2656"/>
+        <joint name="right_arm_shoulder_roll_joint" value="-1.4898"/>
+        <joint name="right_arm_shoulder_yaw_joint" value="0.1519"/>
+        <joint name="right_arm_wrist_pitch_joint" value="0"/>
+        <joint name="right_arm_wrist_roll_joint" value="0"/>
+    </group_state>
+    <group_state name="left_arm_up" group="phoebe_left_arm">
+        <joint name="left_arm_elbow_pitch_joint" value="0.5974"/>
+        <joint name="left_arm_elbow_yaw_joint" value="0"/>
+        <joint name="left_arm_shoulder_pitch_joint" value="0.8606"/>
+        <joint name="left_arm_shoulder_roll_joint" value="-0.593"/>
+        <joint name="left_arm_shoulder_yaw_joint" value="-0.1519"/>
+        <joint name="left_arm_wrist_pitch_joint" value="0"/>
+        <joint name="left_arm_wrist_roll_joint" value="0"/>
+    </group_state>
+    <group_state name="right_arm_up" group="phoebe_right_arm">
+        <joint name="right_arm_elbow_pitch_joint" value="0.3139"/>
+        <joint name="right_arm_elbow_yaw_joint" value="0"/>
+        <joint name="right_arm_shoulder_pitch_joint" value="1.0024"/>
+        <joint name="right_arm_shoulder_roll_joint" value="0.1012"/>
+        <joint name="right_arm_shoulder_yaw_joint" value="-0.2126"/>
+        <joint name="right_arm_wrist_pitch_joint" value="0"/>
+        <joint name="right_arm_wrist_roll_joint" value="0"/>
+    </group_state>
+    <group_state name="left_hand_open" group="phoebe_left_hand">
+        <joint name="left_arm_gripper_joint" value="-0.008"/>
+    </group_state>
+    <group_state name="left_hand_close" group="phoebe_left_hand">
+        <joint name="left_arm_gripper_joint" value="0.008"/>
+    </group_state>
+    <group_state name="right_hand_open" group="phoebe_right_hand">
+        <joint name="right_arm_gripper_joint" value="-0.008"/>
+    </group_state>
+    <group_state name="right_hand_close" group="phoebe_right_hand">
+        <joint name="right_arm_gripper_joint" value="0.008"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="left_arm_EE" parent_link="left_arm_wrist_roll" group="left_arm" />
-    <end_effector name="right_arm_EE" parent_link="right_arm_wrist_roll" group="right_arm" />
+    <end_effector name="left_ee" parent_link="left_arm_wrist_roll" group="phoebe_left_hand"/>
+    <end_effector name="right_ee" parent_link="right_arm_wrist_roll" group="phoebe_right_hand"/>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="planar" parent_frame="odom_combined" child_link="base_link" />
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="bot_base_link"/>
+    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
+    <passive_joint name="caster_swivel_joint"/>
+    <passive_joint name="caster_wheel_joint"/>
+    <passive_joint name="ptu_pan_joint"/>
+    <passive_joint name="ptu_tilt_joint"/>
+    <passive_joint name="wheel_left_joint"/>
+    <passive_joint name="wheel_right_joint"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <!--disable_collisions link1="base_footprint" link2="base_link" reason="Adjacent" />
-    <disable_collisions link1="base_footprint" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_elbow_pitch" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_elbow_yaw" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_gripper_finger2" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="left_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_elbow_pitch" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_elbow_yaw" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_gripper_finger1" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_gripper_finger2" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="base_footprint" link2="wheel_left" reason="Adjacent" />
-    <disable_collisions link1="base_footprint" link2="wheel_right" reason="Adjacent" /-->
-    <disable_collisions link1="base_link" link2="left_arm_base_link" reason="Adjacent" />
-    <disable_collisions link1="base_link" link2="left_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="base_link" link2="right_arm_base_link" reason="Adjacent" />
-    <disable_collisions link1="base_link" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="base_link" link2="wheel_left" reason="Default" />
-    <disable_collisions link1="base_link" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="left_arm_shoulder_roll" reason="Adjacent" />
-    <disable_collisions link1="left_arm_base_link" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_elbow_yaw" reason="Adjacent" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_shoulder_yaw" reason="Adjacent" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_pitch" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_gripper_finger1" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_gripper_finger2" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_wrist_pitch" reason="Adjacent" />
-    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_wrist_roll" reason="Never" />
-    <disable_collisions link1="left_arm_elbow_yaw" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="left_arm_gripper_finger2" link2="left_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_gripper_finger2" link2="left_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_gripper_finger2" link2="left_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="left_arm_shoulder_roll" reason="Adjacent" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="left_arm_shoulder_yaw" reason="Adjacent" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_pitch" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_elbow_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_roll" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_elbow_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="left_arm_shoulder_yaw" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="left_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="left_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_gripper_finger1" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_gripper_finger2" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="left_arm_virtual_endeffector" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_wrist_pitch" link2="left_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_base_link" link2="right_arm_shoulder_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_base_link" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="right_arm_base_link" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="right_arm_base_link" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_elbow_yaw" reason="Adjacent" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_shoulder_pitch" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_shoulder_roll" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_shoulder_yaw" reason="Adjacent" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_wrist_roll" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_pitch" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_virtual_endeffector" reason="Never" />
-    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_wrist_pitch" reason="Adjacent" />
-    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_wrist_roll" reason="Never" />
-    <disable_collisions link1="right_arm_gripper_finger1" link2="right_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_gripper_finger2" link2="right_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_shoulder_pitch" link2="right_arm_shoulder_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_shoulder_pitch" link2="right_arm_shoulder_yaw" reason="Adjacent" />
-    <disable_collisions link1="right_arm_shoulder_pitch" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_pitch" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_roll" link2="right_arm_shoulder_yaw" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_roll" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_roll" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_yaw" link2="right_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_yaw" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="right_arm_shoulder_yaw" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="right_arm_virtual_endeffector" link2="right_arm_wrist_pitch" reason="Never" />
-    <disable_collisions link1="right_arm_virtual_endeffector" link2="right_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_virtual_endeffector" link2="wheel_left" reason="Never" />
-    <disable_collisions link1="right_arm_virtual_endeffector" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="right_arm_wrist_pitch" link2="right_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="wheel_left" link2="wheel_right" reason="Never" />
-    <disable_collisions link1="left_arm_camera" link2="left_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="left_arm_camera" link2="left_arm_camera_bracket" reason="Adjacent" />
-    <disable_collisions link1="left_arm_wrist_roll" link2="left_arm_camera_bracket" reason="Adjacent" />
-    <disable_collisions link1="right_arm_camera" link2="right_arm_wrist_roll" reason="Adjacent" />
-    <disable_collisions link1="right_arm_camera" link2="right_arm_camera_bracket" reason="Adjacent" />
-    <disable_collisions link1="right_arm_wrist_roll" link2="right_arm_camera_bracket" reason="Adjacent" />
-    <disable_collisions link1="right_arm_camera" link2="right_arm_shoulder_yaw" reason="Beats me" />
+    <disable_collisions link1="arm_attachment_plate" link2="back_bumper_plate" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="bot_base_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="caster_base_plate" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="caster_fork" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="caster_wheel" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="central_plate" reason="Adjacent"/>
+    <disable_collisions link1="arm_attachment_plate" link2="front_bumper_plate" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="left_arm_bot_base_link" reason="Adjacent"/>
+    <disable_collisions link1="arm_attachment_plate" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="right_arm_bot_base_link" reason="Adjacent"/>
+    <disable_collisions link1="arm_attachment_plate" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="arm_attachment_plate" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="bot_base_link" reason="Adjacent"/>
+    <disable_collisions link1="back_bumper_plate" link2="caster_base_plate" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="caster_fork" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="caster_wheel" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="central_plate" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="front_bumper_plate" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="back_bumper_plate" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="caster_base_plate" reason="Adjacent"/>
+    <disable_collisions link1="bot_base_link" link2="caster_fork" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="caster_wheel" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="central_plate" reason="Default"/>
+    <disable_collisions link1="bot_base_link" link2="front_bumper_plate" reason="Adjacent"/>
+    <disable_collisions link1="bot_base_link" link2="hokuyo_link" reason="Adjacent"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="left_side_post" reason="Adjacent"/>
+    <disable_collisions link1="bot_base_link" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="right_side_post" reason="Adjacent"/>
+    <disable_collisions link1="bot_base_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="bot_base_link" link2="wheel_left_link" reason="Adjacent"/>
+    <disable_collisions link1="bot_base_link" link2="wheel_right_link" reason="Adjacent"/>
+    <disable_collisions link1="caster_base_plate" link2="caster_fork" reason="Adjacent"/>
+    <disable_collisions link1="caster_base_plate" link2="caster_wheel" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="central_plate" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="front_bumper_plate" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="caster_base_plate" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="caster_wheel" reason="Adjacent"/>
+    <disable_collisions link1="caster_fork" link2="central_plate" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="front_bumper_plate" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="caster_fork" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="central_plate" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="front_bumper_plate" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="caster_wheel" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="front_bumper_plate" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="left_arm_bot_base_link" reason="Default"/>
+    <disable_collisions link1="central_plate" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="left_side_post" reason="Adjacent"/>
+    <disable_collisions link1="central_plate" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="right_arm_bot_base_link" reason="Default"/>
+    <disable_collisions link1="central_plate" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="right_side_post" reason="Default"/>
+    <disable_collisions link1="central_plate" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="central_plate" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="hokuyo_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="front_bumper_plate" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_camera" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="hokuyo_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="left_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="left_arm_shoulder_roll" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_bot_base_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="left_arm_camera_bracket" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_camera" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_camera" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="left_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="left_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_camera_bracket" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_elbow_yaw" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_shoulder_yaw" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_pitch" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_wrist_pitch" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_elbow_yaw" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="left_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger1" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger2" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger2" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger2" link2="left_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_gripper_finger2" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger2" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_gripper_finger2" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="left_arm_shoulder_roll" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="left_arm_shoulder_yaw" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_camera" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_camera_bracket" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_pitch" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="left_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="left_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_roll" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="left_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="left_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_shoulder_yaw" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="left_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_pitch" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_roll" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_arm_wrist_roll" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="ptu_base_plate_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="top_lidar_link" reason="Adjacent"/>
+    <disable_collisions link1="left_side_post" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="left_side_post" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="ptu_mount_link" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="ptu_pan_link" reason="Adjacent"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="ptu_tilt_link" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="top_lidar_link" reason="Adjacent"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="ptu_base_plate_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="ptu_pan_link" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="ptu_tilt_link" reason="Adjacent"/>
+    <disable_collisions link1="ptu_mount_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="ptu_mount_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="ptu_tilt_link" reason="Adjacent"/>
+    <disable_collisions link1="ptu_pan_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="ptu_pan_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="right_arm_bot_base_link" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="ptu_tilt_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="right_arm_elbow_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="right_arm_shoulder_roll" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_bot_base_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="right_arm_camera_bracket" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_camera" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_camera" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="right_arm_elbow_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="right_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_camera_bracket" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_elbow_yaw" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_shoulder_yaw" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_pitch" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_gripper_finger1" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_shoulder_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_shoulder_roll" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_wrist_pitch" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="right_arm_wrist_roll" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_elbow_yaw" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger1" link2="right_arm_gripper_finger2" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger1" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger1" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger1" link2="right_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_gripper_finger1" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger1" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger2" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger2" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger2" link2="right_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_gripper_finger2" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_gripper_finger2" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_pitch" link2="right_arm_shoulder_roll" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_shoulder_pitch" link2="right_arm_shoulder_yaw" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_shoulder_pitch" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_pitch" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_pitch" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_roll" link2="right_arm_shoulder_yaw" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_roll" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_roll" link2="right_side_post" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_roll" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_roll" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_roll" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_yaw" link2="right_arm_wrist_pitch" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_yaw" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_shoulder_yaw" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_wrist_pitch" link2="right_arm_wrist_roll" reason="Adjacent"/>
+    <disable_collisions link1="right_arm_wrist_pitch" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_wrist_pitch" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_arm_wrist_roll" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_arm_wrist_roll" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="right_side_post" link2="top_lidar_link" reason="Never"/>
+    <disable_collisions link1="right_side_post" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="right_side_post" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="top_lidar_link" link2="wheel_left_link" reason="Never"/>
+    <disable_collisions link1="top_lidar_link" link2="wheel_right_link" reason="Never"/>
+    <disable_collisions link1="wheel_left_link" link2="wheel_right_link" reason="Never"/>
 </robot>
