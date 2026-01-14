@@ -1,24 +1,16 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.22)
 project(phoebe_moveit_config)
 
-find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  actionlib
-  control_msgs
-  std_msgs
-  dynamixel_controllers
-)
+find_package(ament_cmake REQUIRED)
 
-catkin_package()
+ament_package()
 
-include_directories(include ${catkin_INCLUDE_DIRS})
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/launch")
+  install(
+    DIRECTORY launch
+    DESTINATION share/${PROJECT_NAME}
+    PATTERN "setup_assistant.launch" EXCLUDE)
+endif()
 
-add_executable(dynamixel_actionserver src/dynamixel_actionserver.cpp)
-
-target_link_libraries(dynamixel_actionserver
-  ${catkin_LIBRARIES}
-)
-
-install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-install(DIRECTORY config DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
+install(DIRECTORY config DESTINATION share/${PROJECT_NAME})
+install(FILES .setup_assistant DESTINATION share/${PROJECT_NAME})
